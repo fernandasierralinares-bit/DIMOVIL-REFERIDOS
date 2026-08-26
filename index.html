@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -11,13 +10,16 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>DIMOVIL | Registro de Citas</title>
+    <title>DIMOVIL | Programa de Referidos</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="estilos.css">
+    <link
+        rel="stylesheet"
+        href="estilos.css"
+    >
 
-    <!-- SUPABASE -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+    </script>
 
 </head>
 
@@ -25,33 +27,189 @@
 <body>
 
 
-<!-- =====================================
-     ENCABEZADO
-===================================== -->
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
-<header class="encabezado">
+<header class="navbar">
 
     <div class="logo">
         DIMOVIL
     </div>
 
-    <p>
-        Registro de clientes y referidos
-    </p>
+
+    <nav>
+
+        <button onclick="mostrarSeccion('inicio')">
+            🏠 Inicio
+        </button>
+
+        <button onclick="mostrarSeccion('registro')">
+            📝 Registro
+        </button>
+
+        <button onclick="mostrarSeccion('buscar')">
+            🔎 Buscar cita
+        </button>
+
+        <button onclick="mostrarSeccion('registros')">
+            📋 Registros
+        </button>
+
+        <button onclick="mostrarSeccion('mensaje')">
+            💬 Mensaje
+        </button>
+
+    </nav>
 
 </header>
 
 
-<!-- =====================================
-     FORMULARIO
-===================================== -->
 
 <main>
 
-    <section id="contenedor">
+
+<!-- =====================================================
+     INICIO
+===================================================== -->
+
+<section
+    id="inicio"
+    class="seccion activa"
+>
+
+
+    <div class="bienvenida">
+
+
+        <div>
+
+            <span class="etiqueta">
+                SISTEMA DIMOVIL
+            </span>
+
+
+            <h1>
+                ¡Cada referido puede convertirse
+                en una gran oportunidad! 💙
+            </h1>
+
+
+            <p>
+
+                Registra tus citas, recomienda nuevos
+                clientes y ayuda a que más personas
+                conozcan los beneficios de DIMOVIL.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="frase">
+
+            <span>
+                ✨ MOTIVACIÓN DEL DÍA
+            </span>
+
+
+            <strong id="fraseMotivadora">
+
+                Cada cliente es una oportunidad
+                para crecer.
+
+            </strong>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         ESTADÍSTICAS
+    ================================================== -->
+
+    <div class="estadisticas">
+
+
+        <div class="tarjeta-estadistica">
+
+            <span>
+                📅
+            </span>
+
+            <p>
+                Citas de hoy
+            </p>
+
+            <strong id="citasHoy">
+                0
+            </strong>
+
+        </div>
+
+
+
+        <div class="tarjeta-estadistica">
+
+            <span>
+                👥
+            </span>
+
+            <p>
+                Referidos del mes
+            </p>
+
+            <strong id="referidosMes">
+                0
+            </strong>
+
+        </div>
+
+
+
+        <div class="tarjeta-estadistica">
+
+            <span>
+                🎁
+            </span>
+
+            <p>
+                Regalos entregados
+            </p>
+
+            <strong id="regalosEntregados">
+                0
+            </strong>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     REGISTRO DE CITA
+===================================================== -->
+
+<section
+    id="registro"
+    class="seccion"
+>
+
+
+    <div class="contenedor">
+
 
         <h2>
-            📱 Registro de Cliente
+            📝 Registrar nueva cita
         </h2>
 
 
@@ -67,13 +225,13 @@
             <input
                 type="text"
                 id="nombre"
-                placeholder="Escribe el nombre completo"
-                autocomplete="name"
+                placeholder="Nombre del cliente"
                 required
             >
 
 
-            <!-- TELEFONO -->
+
+            <!-- NUMERO -->
 
             <label for="numero">
                 Número de teléfono
@@ -82,56 +240,95 @@
             <input
                 type="tel"
                 id="numero"
-                placeholder="Ejemplo: 4621234567"
-                inputmode="numeric"
+                placeholder="10 dígitos"
                 maxlength="10"
                 required
             >
 
 
-            <!-- FECHA -->
 
-            <label for="fecha">
-                Fecha de la cita
-            </label>
+            <!-- FECHA + HORA -->
 
-            <input
-                type="date"
-                id="fecha"
-                required
-            >
+            <div class="dos-columnas">
 
 
-            <!-- VENDEDOR -->
+                <div>
+
+                    <label for="fecha">
+                        Fecha
+                    </label>
+
+                    <input
+                        type="date"
+                        id="fecha"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div>
+
+                    <label for="hora">
+                        Hora
+                    </label>
+
+                    <input
+                        type="time"
+                        id="hora"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ASESOR -->
 
             <label for="vendedor">
-                Vendedor
+                Asesor / Vendedor
             </label>
 
-            <input
-                type="text"
+            <select
                 id="vendedor"
-                placeholder="Nombre del vendedor"
                 required
             >
 
+                <option value="">
+                    Selecciona asesor
+                </option>
 
-            <!-- REFERIDOS -->
+                <option value="Adela Aurora García Medina">
+                    1. Adela Aurora García Medina
+                </option>
 
-            <p class="titulo">
-                👥 Referidos
-            </p>
+                <option value="Luis Raymundo López González">
+                    2. Luis Raymundo López González
+                </option>
 
+                <option value="Fernanda Paola Sierra Linares">
+                    3. Fernanda Paola Sierra Linares
+                </option>
+
+            </select>
+
+
+
+            <!-- REFERIDO -->
 
             <label>
-                ¿Es su primer referido?
+                Tipo de referido
             </label>
 
 
-            <div class="opciones">
+            <div class="radio-box">
 
 
-                <label class="opcion-radio">
+                <label>
 
                     <input
                         type="radio"
@@ -140,14 +337,13 @@
                         required
                     >
 
-                    <span>
-                        Sí, es su primer referido
-                    </span>
+                    Primer referido
 
                 </label>
 
 
-                <label class="opcion-radio">
+
+                <label>
 
                     <input
                         type="radio"
@@ -155,9 +351,7 @@
                         value="Más de un referido"
                     >
 
-                    <span>
-                        No, lleva más de un referido
-                    </span>
+                    Lleva más de un referido
 
                 </label>
 
@@ -165,33 +359,26 @@
             </div>
 
 
-            <!-- PERSONA RECOMENDADA -->
+
+            <!-- RECOMENDADO -->
 
             <label for="recomendado">
-
                 Nombre de la persona que desea recomendar
-
             </label>
-
 
             <input
                 type="text"
                 id="recomendado"
-                placeholder="Nombre de la persona recomendada"
+                placeholder="Nombre del recomendado"
             >
+
 
 
             <!-- REGALO -->
 
-            <p class="titulo">
-                🎁 Regalo
-            </p>
-
-
             <label for="regalo">
-                Selecciona el regalo
+                Regalo
             </label>
-
 
             <select
                 id="regalo"
@@ -199,7 +386,7 @@
             >
 
                 <option value="">
-                    Selecciona un regalo
+                    Selecciona regalo
                 </option>
 
                 <option value="Bocina">
@@ -229,7 +416,6 @@
             </select>
 
 
-            <!-- BOTON -->
 
             <button
                 type="submit"
@@ -244,45 +430,91 @@
         </form>
 
 
-        <!-- MENSAJE DE ESTADO -->
-
-        <div
-            id="mensaje"
-            class="mensaje"
-        ></div>
+    </div>
 
 
-        <!-- VER REGISTROS -->
+</section>
 
-        <button
-            type="button"
-            id="btnRegistros"
-            class="btn-registros"
-            onclick="mostrarRegistros()"
+
+
+<!-- =====================================================
+     BUSCAR CITA
+===================================================== -->
+
+<section
+    id="buscar"
+    class="seccion"
+>
+
+
+    <div class="contenedor">
+
+
+        <h2>
+            🔎 Buscar cita
+        </h2>
+
+
+        <input
+            type="text"
+            id="busqueda"
+            placeholder="Nombre o número de teléfono"
         >
 
-            📋 Ver registros
+
+        <button
+            class="boton-principal"
+            onclick="buscarCita()"
+        >
+
+            🔎 Buscar
 
         </button>
 
-    </section>
+
+        <div id="resultadoBusqueda"></div>
 
 
-    <!-- =====================================
-         TABLA DE REGISTROS
-    ====================================== -->
+    </div>
 
-    <section id="registros">
 
-        <div class="encabezado-registros">
+</section>
 
-            <h2>
-                📋 Citas registradas
-            </h2>
+
+
+<!-- =====================================================
+     REGISTROS
+===================================================== -->
+
+<section
+    id="registros"
+    class="seccion"
+>
+
+
+    <div class="contenedor-grande">
+
+
+        <div class="titulo-registros">
+
+
+            <div>
+
+                <span class="etiqueta">
+                    CONTROL DIMOVIL
+                </span>
+
+
+                <h2>
+                    📋 Lista de registros
+                </h2>
+
+            </div>
+
+
 
             <button
-                type="button"
-                class="btn-actualizar"
+                class="boton-secundario"
                 onclick="cargarRegistros()"
             >
 
@@ -290,12 +522,81 @@
 
             </button>
 
+
         </div>
 
 
+
+        <!-- FILTROS -->
+
+        <div class="filtros">
+
+
+            <input
+                type="text"
+                id="filtroNombre"
+                placeholder="🔎 Buscar cliente..."
+                oninput="filtrarRegistros()"
+            >
+
+
+
+            <select
+                id="filtroVendedor"
+                onchange="filtrarRegistros()"
+            >
+
+                <option value="">
+                    Todos los asesores
+                </option>
+
+                <option value="Adela Aurora García Medina">
+                    Adela Aurora García Medina
+                </option>
+
+                <option value="Luis Raymundo López González">
+                    Luis Raymundo López González
+                </option>
+
+                <option value="Fernanda Paola Sierra Linares">
+                    Fernanda Paola Sierra Linares
+                </option>
+
+            </select>
+
+
+
+            <select
+                id="filtroEstado"
+                onchange="filtrarRegistros()"
+            >
+
+                <option value="">
+                    Todos los regalos
+                </option>
+
+                <option value="Pendiente">
+                    Pendientes
+                </option>
+
+                <option value="Entregado">
+                    Entregados
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+
+        <!-- TABLA -->
+
         <div class="tabla-contenedor">
 
+
             <table>
+
 
                 <thead>
 
@@ -306,7 +607,7 @@
                         </th>
 
                         <th>
-                            Número
+                            Teléfono
                         </th>
 
                         <th>
@@ -314,7 +615,11 @@
                         </th>
 
                         <th>
-                            Vendedor
+                            Hora
+                        </th>
+
+                        <th>
+                            Asesor
                         </th>
 
                         <th>
@@ -329,41 +634,192 @@
                             Regalo
                         </th>
 
+                        <th>
+                            Estado
+                        </th>
+
+                        <th>
+                            Acción
+                        </th>
+
                     </tr>
 
                 </thead>
+
 
 
                 <tbody id="tablaRegistros">
 
                     <tr>
 
-                        <td colspan="7">
-
-                            Cargando registros...
-
+                        <td colspan="10">
+                            Cargando...
                         </td>
 
                     </tr>
 
                 </tbody>
 
+
             </table>
+
 
         </div>
 
-    </section>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     MENSAJE / INVITACIÓN
+===================================================== -->
+
+<section
+    id="mensaje"
+    class="seccion"
+>
+
+
+    <div class="contenedor mensaje-referidos">
+
+
+        <div class="mensaje-texto">
+
+
+            <span class="etiqueta">
+                PROGRAMA DE REFERIDOS
+            </span>
+
+
+            <h2>
+                🎁 ¡Invita y comienza a ganar!
+            </h2>
+
+
+            <p>
+
+                Recomienda personas a DIMOVIL
+                y comienza a obtener increíbles
+                premios.
+
+            </p>
+
+
+
+            <div class="premios">
+
+                <span>
+                    🔊 Bocina
+                </span>
+
+                <span>
+                    🎧 Audífono
+                </span>
+
+                <span>
+                    🥤 Termo
+                </span>
+
+                <span>
+                    📱 Mica hidrogel
+                </span>
+
+                <span>
+                    🔋 Power Bank
+                </span>
+
+                <span>
+                    ⌚ Smartwatch
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+
+        <form
+            id="formMensaje"
+            class="form-pequeno"
+        >
+
+
+            <h3>
+                📲 Invitar a una persona
+            </h3>
+
+
+            <p>
+
+                Solo necesitas su nombre
+                y número para enviarle
+                la invitación.
+
+            </p>
+
+
+            <label>
+                Nombre
+            </label>
+
+            <input
+                type="text"
+                id="nombreMensaje"
+                placeholder="Nombre"
+                required
+            >
+
+
+            <label>
+                Número de teléfono
+            </label>
+
+            <input
+                type="tel"
+                id="numeroMensaje"
+                placeholder="10 dígitos"
+                maxlength="10"
+                required
+            >
+
+
+            <button
+                type="submit"
+                class="boton-whatsapp"
+            >
+
+                💬 Enviar invitación por WhatsApp
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+</section>
+
 
 </main>
 
 
-<!-- =====================================
-     PIE
-===================================== -->
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
     DIMOVIL © 2026
+    ·
+    Programa de Referidos
 
 </footer>
 
@@ -371,36 +827,19 @@
 
 <script>
 
+
 /* =====================================================
-   CONFIGURACIÓN DE SUPABASE
+   SUPABASE
 ===================================================== */
 
-
-/*
-   TU URL DE SUPABASE
-*/
 
 const SUPABASE_URL =
     "https://myuerncwcvrcqzjbntos.supabase.co";
 
 
-/*
-   PEGA AQUÍ TU PUBLISHABLE KEY
-
-   Debe comenzar con:
-
-   sb_publishable_
-
-   NO uses la Secret Key.
-*/
-
 const SUPABASE_KEY =
     "sb_publishable_xY4lBidQ8eqnWX-Aii8ZNA_IWzMkVKl";
 
-
-/*
-   CONEXIÓN
-*/
 
 const supabaseClient =
     window.supabase.createClient(
@@ -411,60 +850,155 @@ const supabaseClient =
 
 
 /* =====================================================
-   ELEMENTOS
+   VARIABLES
 ===================================================== */
 
-const formulario =
-    document.getElementById("formulario");
 
-const btnCrear =
-    document.getElementById("btnCrear");
-
-const mensaje =
-    document.getElementById("mensaje");
-
-const tablaRegistros =
-    document.getElementById("tablaRegistros");
+let registros = [];
 
 
 
 /* =====================================================
-   MENSAJE
+   NAVEGACIÓN
 ===================================================== */
 
-function mostrarMensaje(
-    texto,
-    tipo = "exito"
-) {
 
-    mensaje.textContent = texto;
+function mostrarSeccion(id) {
 
-    mensaje.className =
-        "mensaje " + tipo;
+
+    document
+        .querySelectorAll(".seccion")
+        .forEach(
+            seccion => {
+
+                seccion.classList.remove(
+                    "activa"
+                );
+
+            }
+        );
+
+
+    document
+        .getElementById(id)
+        .classList.add(
+            "activa"
+        );
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+
+
+    if (
+        id === "inicio"
+    ) {
+
+        cargarEstadisticas();
+
+    }
+
+
+
+    if (
+        id === "registros"
+    ) {
+
+        cargarRegistros();
+
+    }
 
 }
 
 
 
 /* =====================================================
-   FORMATEAR FECHA
+   FECHA DE HOY
 ===================================================== */
 
-function formatearFecha(fecha) {
+
+function fechaHoy() {
+
+
+    const fecha =
+        new Date();
+
+
+    const año =
+        fecha.getFullYear();
+
+
+    const mes =
+        String(
+            fecha.getMonth() + 1
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    const dia =
+        String(
+            fecha.getDate()
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    return (
+        año +
+        "-" +
+        mes +
+        "-" +
+        dia
+    );
+
+}
+
+
+document
+    .getElementById("fecha")
+    .min =
+    fechaHoy();
+
+
+
+/* =====================================================
+   FORMATO DE FECHA
+===================================================== */
+
+
+function formatearFecha(
+    fecha
+) {
+
 
     if (!fecha) {
+
         return "";
+
     }
+
 
     const partes =
         fecha.split("-");
 
+
     return (
+
         partes[2] +
         "/" +
         partes[1] +
         "/" +
         partes[0]
+
     );
 
 }
@@ -475,265 +1009,329 @@ function formatearFecha(fecha) {
    CREAR CITA
 ===================================================== */
 
-formulario.addEventListener(
-    "submit",
-    async function(event) {
 
-        event.preventDefault();
-
-
-        /* DATOS */
-
-        const nombre =
-            document
-                .getElementById("nombre")
-                .value
-                .trim();
+document
+    .getElementById("formulario")
+    .addEventListener(
+        "submit",
+        async function(event) {
 
 
-        const numero =
-            document
-                .getElementById("numero")
-                .value
-                .trim();
-
-
-        const fecha =
-            document
-                .getElementById("fecha")
-                .value;
-
-
-        const vendedor =
-            document
-                .getElementById("vendedor")
-                .value
-                .trim();
-
-
-        const recomendado =
-            document
-                .getElementById("recomendado")
-                .value
-                .trim();
-
-
-        const regalo =
-            document
-                .getElementById("regalo")
-                .value;
-
-
-        const referidoSeleccionado =
-            document.querySelector(
-                'input[name="referido"]:checked'
-            );
-
-
-        const referido =
-            referidoSeleccionado
-                ? referidoSeleccionado.value
-                : "";
+            event.preventDefault();
 
 
 
-        /* VALIDACIÓN DEL TELÉFONO */
-
-        const numeroLimpio =
-            numero.replace(/\D/g, "");
-
-
-        if (
-            numeroLimpio.length !== 10
-        ) {
-
-            mostrarMensaje(
-                "El número debe tener 10 dígitos.",
-                "error"
-            );
-
-            return;
-
-        }
+            const nombre =
+                document
+                    .getElementById("nombre")
+                    .value
+                    .trim();
 
 
 
-        /* BOTÓN */
-
-        btnCrear.disabled = true;
-
-        btnCrear.textContent =
-            "Guardando cita...";
-
-
-
-        try {
-
-
-            /* =================================
-               INSERTAR EN SUPABASE
-            ================================= */
-
-            const {
-                data,
-                error
-            } = await supabaseClient
-                .from("dimovil")
-                .insert([
-
-                    {
-
-                        nombre: nombre,
-
-                        numero: numeroLimpio,
-
-                        fecha: fecha,
-
-                        vendedor: vendedor,
-
-                        referido: referido,
-
-                        recomendado:
-                            recomendado || null,
-
-                        regalo: regalo
-
-                    }
-
-                ])
-                .select()
-                .single();
+            const numero =
+                document
+                    .getElementById("numero")
+                    .value
+                    .replace(
+                        /\D/g,
+                        ""
+                    );
 
 
 
-            /* ERROR */
+            const fecha =
+                document
+                    .getElementById("fecha")
+                    .value;
 
-            if (error) {
 
-                console.error(
-                    "Error Supabase:",
-                    error
+
+            const hora =
+                document
+                    .getElementById("hora")
+                    .value;
+
+
+
+            const vendedor =
+                document
+                    .getElementById("vendedor")
+                    .value;
+
+
+
+            const recomendado =
+                document
+                    .getElementById("recomendado")
+                    .value
+                    .trim();
+
+
+
+            const regalo =
+                document
+                    .getElementById("regalo")
+                    .value;
+
+
+
+            const referidoElement =
+                document.querySelector(
+                    'input[name="referido"]:checked'
                 );
 
-                throw error;
+
+            if (!referidoElement) {
+
+                alert(
+                    "Selecciona el tipo de referido."
+                );
+
+                return;
+
+            }
+
+
+            const referido =
+                referidoElement.value;
+
+
+
+            if (
+                numero.length !== 10
+            ) {
+
+                alert(
+                    "El número debe tener 10 dígitos."
+                );
+
+                return;
 
             }
 
 
 
-            /* =================================
-               FELICITACIÓN
-            ================================= */
+            const boton =
+                document
+                    .getElementById(
+                        "btnCrear"
+                    );
 
-            alert(
 
-                "🎉 ¡FELICIDADES!\n\n" +
+            boton.disabled =
+                true;
 
-                "Tu cita fue creada correctamente.\n\n" +
 
-                "👤 Cliente: " +
-                nombre +
-                "\n\n" +
-
-                "📅 Fecha: " +
-                formatearFecha(fecha) +
-                "\n\n" +
-
-                "🎁 A partir de ahora tu cliente " +
-                "podrá obtener increíbles regalos."
-
-            );
+            boton.textContent =
+                "Guardando...";
 
 
 
-            /* =================================
-               WHATSAPP
-            ================================= */
-
-            enviarWhatsApp(
-                nombre,
-                numeroLimpio,
-                fecha,
-                regalo
-            );
+            try {
 
 
+                const {
+                    error
+                } =
+                    await supabaseClient
+                        .from("dimovil")
+                        .insert([
 
-            /* =================================
-               LIMPIAR FORMULARIO
-            ================================= */
+                            {
 
-            formulario.reset();
+                                nombre:
+
+                                    nombre,
+
+                                numero:
+
+                                    numero,
+
+                                fecha:
+
+                                    fecha,
+
+                                hora:
+
+                                    hora,
+
+                                vendedor:
+
+                                    vendedor,
+
+                                referido:
+
+                                    referido,
+
+                                recomendado:
+
+                                    recomendado ||
+                                    null,
+
+                                regalo:
+
+                                    regalo,
+
+                                estado_regalo:
+
+                                    "Pendiente",
+
+                                entregado_por:
+
+                                    null,
+
+                                entregado_a:
+
+                                    null,
+
+                                fecha_entrega:
+
+                                    null
+
+                            }
+
+                        ]);
 
 
 
-            mostrarMensaje(
-                "✅ Cita guardada correctamente.",
-                "exito"
-            );
+                if (error) {
+
+                    throw error;
+
+                }
 
 
 
-            /* ACTUALIZAR TABLA */
+                /* ======================================
+                   ALERTA DE FELICIDADES
+                ====================================== */
 
-            cargarRegistros();
+
+                alert(
+
+                    "🎉 ¡FELICIDADES!\n\n" +
+
+                    "Tu cita fue creada correctamente.\n\n" +
+
+                    "👤 Cliente: " +
+                    nombre +
+                    "\n\n" +
+
+                    "📅 Fecha: " +
+                    formatearFecha(
+                        fecha
+                    ) +
+                    "\n" +
+
+                    "🕐 Hora: " +
+                    hora +
+                    "\n\n" +
+
+                    "🎁 A partir de ahora tu cliente " +
+
+                    "podrá obtener increíbles regalos."
+
+                );
 
 
+
+                /* ======================================
+                   WHATSAPP
+                ====================================== */
+
+
+                enviarWhatsAppCita(
+
+                    nombre,
+
+                    numero,
+
+                    fecha,
+
+                    hora,
+
+                    regalo
+
+                );
+
+
+
+                document
+                    .getElementById(
+                        "formulario"
+                    )
+                    .reset();
+
+
+
+                cargarEstadisticas();
+
+
+            }
+
+
+            catch(error) {
+
+
+                console.error(
+                    error
+                );
+
+
+                alert(
+
+                    "❌ No se pudo guardar la cita.\n\n" +
+
+                    "Error: " +
+                    error.message
+
+                );
+
+            }
+
+
+            finally {
+
+
+                boton.disabled =
+                    false;
+
+
+                boton.textContent =
+                    "🎉 Crear cita";
+
+            }
 
         }
-
-        catch (error) {
-
-
-            console.error(error);
-
-
-            mostrarMensaje(
-
-                "❌ No se pudo guardar la cita. " +
-                "Revisa la conexión con Supabase " +
-                "y las políticas RLS.",
-
-                "error"
-
-            );
-
-        }
-
-
-        finally {
-
-            btnCrear.disabled = false;
-
-            btnCrear.textContent =
-                "🎉 Crear cita";
-
-        }
-
-    }
-);
+    );
 
 
 
 /* =====================================================
-   WHATSAPP
+   WHATSAPP DE CITA
 ===================================================== */
 
-function enviarWhatsApp(
+
+function enviarWhatsAppCita(
+
     nombre,
+
     numero,
+
     fecha,
+
+    hora,
+
     regalo
+
 ) {
 
 
     let telefono =
-        numero.replace(/\D/g, "");
+        numero;
 
 
-    /*
-       México
-    */
 
     if (
         telefono.length === 10
@@ -746,36 +1344,53 @@ function enviarWhatsApp(
     }
 
 
-    const mensajeWhatsApp =
+
+    const mensaje =
+
+        "💙 *DIMOVIL* 💙\n\n" +
 
         "¡Hola " +
         nombre +
         "! 👋\n\n" +
 
-        "Te confirmamos que tu cita con " +
-        "DIMOVIL ha sido registrada correctamente. 📱💙\n\n" +
+        "Tu cita ha sido confirmada correctamente. 🎉\n\n" +
 
-        "📅 Fecha: " +
-        formatearFecha(fecha) +
+        "📅 *Fecha:* " +
+        formatearFecha(
+            fecha
+        ) +
+        "\n" +
+
+        "🕐 *Hora:* " +
+        hora +
         "\n\n" +
 
-        "🎁 Regalo seleccionado: " +
+        "🎁 *Beneficio:* " +
         regalo +
         "\n\n" +
 
-        "¡Te esperamos! 🎉\n\n" +
+        "📍 *Ubicación DIMOVIL:*\n" +
+
+        "https://maps.app.goo.gl/6dQwSnfhcXmHBLPj9\n\n" +
+
+        "¡Te esperamos! 💙\n\n" +
 
         "Gracias por confiar en DIMOVIL.";
+
 
 
     const url =
 
         "https://wa.me/" +
+
         telefono +
+
         "?text=" +
+
         encodeURIComponent(
-            mensajeWhatsApp
+            mensaje
         );
+
 
 
     window.open(
@@ -788,60 +1403,27 @@ function enviarWhatsApp(
 
 
 /* =====================================================
-   MOSTRAR / OCULTAR REGISTROS
+   CARGAR REGISTROS
 ===================================================== */
 
-function mostrarRegistros() {
-
-
-    const registros =
-        document.getElementById(
-            "registros"
-        );
-
-
-    if (
-        registros.style.display ===
-        "block"
-    ) {
-
-        registros.style.display =
-            "none";
-
-        return;
-
-    }
-
-
-    registros.style.display =
-        "block";
-
-
-    cargarRegistros();
-
-
-    registros.scrollIntoView({
-        behavior: "smooth"
-    });
-
-}
-
-
-
-/* =====================================================
-   CARGAR REGISTROS DESDE SUPABASE
-===================================================== */
 
 async function cargarRegistros() {
 
 
-    tablaRegistros.innerHTML = `
+    const tabla =
+        document
+            .getElementById(
+                "tablaRegistros"
+            );
+
+
+    tabla.innerHTML = `
 
         <tr>
 
-            <td colspan="7">
+            <td colspan="10">
 
-                🔄 Cargando...
+                🔄 Cargando registros...
 
             </td>
 
@@ -850,23 +1432,30 @@ async function cargarRegistros() {
     `;
 
 
+
     try {
 
 
         const {
             data,
             error
-        } = await supabaseClient
-            .from("dimovil")
-            .select(
-                "id,nombre,numero,fecha,vendedor,referido,recomendado,regalo"
-            )
-            .order(
-                "fecha",
-                {
-                    ascending: true
-                }
-            );
+        } =
+            await supabaseClient
+
+                .from("dimovil")
+
+                .select("*")
+
+                .order(
+
+                    "fecha",
+
+                    {
+                        ascending:
+                            true
+                    }
+
+                );
 
 
 
@@ -878,132 +1467,33 @@ async function cargarRegistros() {
 
 
 
-        /* SIN REGISTROS */
-
-        if (
-            !data ||
-            data.length === 0
-        ) {
-
-            tablaRegistros.innerHTML = `
-
-                <tr>
-
-                    <td colspan="7">
-
-                        📭 No hay citas registradas.
-
-                    </td>
-
-                </tr>
-
-            `;
-
-            return;
-
-        }
+        registros =
+            data || [];
 
 
-
-        /* LIMPIAR */
-
-        tablaRegistros.innerHTML =
-            "";
-
-
-
-        /* CREAR FILAS */
-
-        data.forEach(
-            function(cita) {
-
-
-                const fila =
-                    document.createElement(
-                        "tr"
-                    );
-
-
-                fila.innerHTML = `
-
-                    <td>
-                        ${escaparHTML(
-                            cita.nombre
-                        )}
-                    </td>
-
-                    <td>
-                        ${escaparHTML(
-                            cita.numero
-                        )}
-                    </td>
-
-                    <td>
-                        ${formatearFecha(
-                            cita.fecha
-                        )}
-                    </td>
-
-                    <td>
-                        ${escaparHTML(
-                            cita.vendedor
-                        )}
-                    </td>
-
-                    <td>
-                        ${escaparHTML(
-                            cita.referido
-                        )}
-                    </td>
-
-                    <td>
-                        ${
-                            cita.recomendado
-                                ? escaparHTML(
-                                    cita.recomendado
-                                )
-                                : "—"
-                        }
-                    </td>
-
-                    <td>
-                        🎁 ${
-                            escaparHTML(
-                                cita.regalo
-                            )
-                        }
-                    </td>
-
-                `;
-
-
-                tablaRegistros.appendChild(
-                    fila
-                );
-
-            }
+        mostrarTabla(
+            registros
         );
 
 
     }
 
-    catch (error) {
+
+    catch(error) {
 
 
         console.error(
-            "Error al consultar:",
             error
         );
 
 
-        tablaRegistros.innerHTML = `
+        tabla.innerHTML = `
 
             <tr>
 
-                <td colspan="7">
+                <td colspan="10">
 
-                    ❌ No se pudieron cargar
-                    los registros.
+                    ❌ Error al cargar registros.
 
                 </td>
 
@@ -1018,14 +1508,1162 @@ async function cargarRegistros() {
 
 
 /* =====================================================
-   SEGURIDAD BÁSICA PARA MOSTRAR TEXTO
+   MOSTRAR TABLA
 ===================================================== */
 
-function escaparHTML(texto) {
+
+function mostrarTabla(
+    lista
+) {
+
+
+    const tabla =
+        document
+            .getElementById(
+                "tablaRegistros"
+            );
+
+
+    tabla.innerHTML =
+        "";
+
+
 
     if (
+        lista.length === 0
+    ) {
+
+
+        tabla.innerHTML = `
+
+            <tr>
+
+                <td colspan="10">
+
+                    📭 No hay registros todavía.
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
+    lista.forEach(
+        cita => {
+
+
+            const fila =
+                document.createElement(
+                    "tr"
+                );
+
+
+            const estado =
+                cita.estado_regalo ||
+                "Pendiente";
+
+
+
+            fila.innerHTML = `
+
+                <td>
+                    ${escapar(
+                        cita.nombre
+                    )}
+                </td>
+
+                <td>
+                    ${escapar(
+                        cita.numero
+                    )}
+                </td>
+
+                <td>
+                    ${formatearFecha(
+                        cita.fecha
+                    )}
+                </td>
+
+                <td>
+                    ${
+                        cita.hora ||
+                        "—"
+                    }
+                </td>
+
+                <td>
+                    ${escapar(
+                        cita.vendedor
+                    )}
+                </td>
+
+                <td>
+                    ${escapar(
+                        cita.referido
+                    )}
+                </td>
+
+                <td>
+                    ${
+                        cita.recomendado
+                        ?
+                        escapar(
+                            cita.recomendado
+                        )
+                        :
+                        "—"
+                    }
+                </td>
+
+                <td>
+                    🎁 ${escapar(
+                        cita.regalo
+                    )}
+                </td>
+
+                <td>
+
+                    <span
+                        class="estado ${
+                            estado ===
+                            "Entregado"
+
+                            ?
+
+                            "entregado"
+
+                            :
+
+                            "pendiente"
+
+                        }"
+                    >
+
+                        ${
+                            estado ===
+                            "Entregado"
+
+                            ?
+
+                            "✅ Entregado"
+
+                            :
+
+                            "⏳ Pendiente"
+
+                        }
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    ${
+                        estado !==
+                        "Entregado"
+
+                        ?
+
+                        `
+
+                        <button
+                            class="btn-entregar"
+                            onclick="mostrarEntrega(${cita.id})"
+                        >
+
+                            🎁 Entregar
+
+                        </button>
+
+                        `
+
+                        :
+
+                        `
+
+                        <small>
+
+                            Entregado por:<br>
+
+                            ${escapar(
+                                cita.entregado_por ||
+                                "—"
+                            )}
+
+                        </small>
+
+                        `
+
+                    }
+
+                </td>
+
+            `;
+
+
+
+            tabla.appendChild(
+                fila
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   FILTRAR REGISTROS
+===================================================== */
+
+
+function filtrarRegistros() {
+
+
+    const nombre =
+        document
+            .getElementById(
+                "filtroNombre"
+            )
+            .value
+            .toLowerCase();
+
+
+
+    const vendedor =
+        document
+            .getElementById(
+                "filtroVendedor"
+            )
+            .value;
+
+
+
+    const estado =
+        document
+            .getElementById(
+                "filtroEstado"
+            )
+            .value;
+
+
+
+    const filtrados =
+        registros.filter(
+            cita => {
+
+
+                const coincideNombre =
+
+                    cita.nombre
+                        .toLowerCase()
+                        .includes(
+                            nombre
+                        )
+
+                    ||
+
+                    cita.numero
+                        .includes(
+                            nombre
+                        );
+
+
+
+                const coincideVendedor =
+
+                    !vendedor
+
+                    ||
+
+                    cita.vendedor ===
+                    vendedor;
+
+
+
+                const coincideEstado =
+
+                    !estado
+
+                    ||
+
+                    (
+                        cita.estado_regalo ||
+                        "Pendiente"
+                    ) === estado;
+
+
+
+                return (
+
+                    coincideNombre &&
+
+                    coincideVendedor &&
+
+                    coincideEstado
+
+                );
+
+            }
+        );
+
+
+
+    mostrarTabla(
+        filtrados
+    );
+
+}
+
+
+
+/* =====================================================
+   ENTREGAR REGALO
+===================================================== */
+
+
+async function mostrarEntrega(
+    id
+) {
+
+
+    const cita =
+        registros.find(
+            registro =>
+                registro.id === id
+        );
+
+
+
+    if (!cita) {
+
+        return;
+
+    }
+
+
+
+    const quien =
+        prompt(
+
+            "🎁 ¿QUIÉN ENTREGÓ EL REGALO?\n\n" +
+
+            "1. Adela Aurora García Medina\n" +
+
+            "2. Luis Raymundo López González\n" +
+
+            "3. Fernanda Paola Sierra Linares\n\n" +
+
+            "Escribe 1, 2 o 3."
+
+        );
+
+
+
+    if (!quien) {
+
+        return;
+
+    }
+
+
+
+    const opciones = {
+
+
+        "1":
+
+            "Adela Aurora García Medina",
+
+
+        "2":
+
+            "Luis Raymundo López González",
+
+
+        "3":
+
+            "Fernanda Paola Sierra Linares"
+
+    };
+
+
+
+    const entregadoPor =
+        opciones[
+            quien.trim()
+        ];
+
+
+
+    if (!entregadoPor) {
+
+
+        alert(
+
+            "❌ Opción incorrecta.\n\n" +
+
+            "Escribe 1, 2 o 3."
+
+        );
+
+
+        return;
+
+    }
+
+
+
+    const confirmar =
+        confirm(
+
+            "🎁 CONFIRMAR ENTREGA\n\n" +
+
+            "👤 Cliente:\n" +
+            cita.nombre +
+            "\n\n" +
+
+            "🎁 Regalo:\n" +
+            cita.regalo +
+            "\n\n" +
+
+            "👩‍💼 Entregado por:\n" +
+            entregadoPor +
+            "\n\n" +
+
+            "¿Confirmar entrega?"
+
+        );
+
+
+
+    if (!confirmar) {
+
+        return;
+
+    }
+
+
+
+    try {
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+
+                .from("dimovil")
+
+                .update({
+
+                    estado_regalo:
+                        "Entregado",
+
+                    entregado_por:
+                        entregadoPor,
+
+                    entregado_a:
+                        cita.nombre,
+
+                    fecha_entrega:
+                        fechaHoy()
+
+                })
+
+                .eq(
+                    "id",
+                    id
+                );
+
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+
+        alert(
+
+            "🎉 ¡REGALO ENTREGADO!\n\n" +
+
+            "Cliente: " +
+            cita.nombre +
+            "\n\n" +
+
+            "Regalo: " +
+            cita.regalo
+
+        );
+
+
+
+        cargarRegistros();
+
+        cargarEstadisticas();
+
+
+    }
+
+
+    catch(error) {
+
+
+        console.error(
+            error
+        );
+
+
+        alert(
+
+            "❌ No se pudo registrar la entrega.\n\n" +
+
+            error.message
+
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   BUSCAR CITA
+===================================================== */
+
+
+async function buscarCita() {
+
+
+    const termino =
+        document
+            .getElementById(
+                "busqueda"
+            )
+            .value
+            .trim();
+
+
+
+    if (!termino) {
+
+
+        alert(
+            "Escribe un nombre o número."
+        );
+
+
+        return;
+
+    }
+
+
+
+    const {
+        data,
+        error
+    } =
+
+        await supabaseClient
+
+            .from("dimovil")
+
+            .select("*")
+
+            .or(
+
+                "nombre.ilike.%" +
+                termino +
+                "%,numero.ilike.%" +
+                termino +
+                "%"
+
+            );
+
+
+
+    const resultado =
+        document
+            .getElementById(
+                "resultadoBusqueda"
+            );
+
+
+
+    if (error) {
+
+
+        resultado.innerHTML = `
+
+            <div class="resultado-vacio">
+
+                ❌ Error al realizar la búsqueda.
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
+    if (
+        !data ||
+        data.length === 0
+    ) {
+
+
+        resultado.innerHTML = `
+
+            <div class="resultado-vacio">
+
+                📭 No encontramos ninguna cita.
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
+    resultado.innerHTML =
+        "";
+
+
+
+    data.forEach(
+        cita => {
+
+
+            const tarjeta =
+                document.createElement(
+                    "div"
+                );
+
+
+            tarjeta.className =
+                "resultado-cita";
+
+
+
+            tarjeta.innerHTML = `
+
+                <h3>
+
+                    👤 ${escapar(
+                        cita.nombre
+                    )}
+
+                </h3>
+
+                <p>
+
+                    📱 ${escapar(
+                        cita.numero
+                    )}
+
+                </p>
+
+                <p>
+
+                    📅 ${formatearFecha(
+                        cita.fecha
+                    )}
+
+                </p>
+
+                <p>
+
+                    🕐 ${
+                        cita.hora ||
+                        "—"
+                    }
+
+                </p>
+
+                <p>
+
+                    👩‍💼 ${escapar(
+                        cita.vendedor
+                    )}
+
+                </p>
+
+                <p>
+
+                    🎁 ${escapar(
+                        cita.regalo
+                    )}
+
+                </p>
+
+                <p>
+
+                    ${
+                        cita.estado_regalo ===
+                        "Entregado"
+
+                        ?
+
+                        "✅ Regalo entregado"
+
+                        :
+
+                        "⏳ Regalo pendiente"
+
+                    }
+
+                </p>
+
+            `;
+
+
+
+            resultado.appendChild(
+                tarjeta
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   MENSAJE DE REFERIDOS
+===================================================== */
+
+
+document
+    .getElementById(
+        "formMensaje"
+    )
+    .addEventListener(
+        "submit",
+        function(event) {
+
+
+            event.preventDefault();
+
+
+
+            const nombre =
+                document
+                    .getElementById(
+                        "nombreMensaje"
+                    )
+                    .value
+                    .trim();
+
+
+
+            const numero =
+                document
+                    .getElementById(
+                        "numeroMensaje"
+                    )
+                    .value
+                    .replace(
+                        /\D/g,
+                        ""
+                    );
+
+
+
+            if (
+                numero.length !== 10
+            ) {
+
+
+                alert(
+
+                    "El número debe tener 10 dígitos."
+
+                );
+
+
+                return;
+
+            }
+
+
+
+            let telefono =
+                numero;
+
+
+
+            if (
+                telefono.length === 10
+            ) {
+
+                telefono =
+                    "52" +
+                    telefono;
+
+            }
+
+
+
+            const mensaje =
+
+                "💙 *DIMOVIL* 💙\n\n" +
+
+                "¡Hola " +
+                nombre +
+                "! 👋\n\n" +
+
+                "Queremos invitarte a formar parte de nuestro *Programa de Referidos DIMOVIL*. 🎁\n\n" +
+
+                "Al recomendar personas puedes comenzar a ganar diversos premios:\n\n" +
+
+                "🔊 Bocina\n" +
+
+                "🎧 Audífono\n" +
+
+                "🥤 Termo\n" +
+
+                "📱 Mica hidrogel\n" +
+
+                "🔋 Power Bank\n" +
+
+                "⌚ Smartwatch\n\n" +
+
+                "🎉 ¡Recomienda, agenda y comienza a ganar!\n\n" +
+
+                "📅 Agenda tu cita y conoce todos los beneficios.\n\n" +
+
+                "📍 *Ubicación DIMOVIL:*\n" +
+
+                "https://maps.app.goo.gl/6dQwSnfhcXmHBLPj9";
+
+
+
+            const url =
+
+                "https://wa.me/" +
+
+                telefono +
+
+                "?text=" +
+
+                encodeURIComponent(
+                    mensaje
+                );
+
+
+
+            window.open(
+                url,
+                "_blank"
+            );
+
+        }
+    );
+
+
+
+/* =====================================================
+   ESTADÍSTICAS DEL INICIO
+===================================================== */
+
+
+async function cargarEstadisticas() {
+
+
+    const hoy =
+        fechaHoy();
+
+
+
+    const fechaActual =
+        new Date();
+
+
+
+    const año =
+        fechaActual.getFullYear();
+
+
+
+    const mes =
+        String(
+            fechaActual.getMonth() + 1
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+
+    const inicioMes =
+
+        año +
+        "-" +
+        mes +
+        "-01";
+
+
+
+    /* =========================================
+       CITAS DE HOY
+    ========================================= */
+
+
+    const {
+        count: citasHoy
+    } =
+
+        await supabaseClient
+
+            .from("dimovil")
+
+            .select(
+
+                "*",
+
+                {
+
+                    count:
+                        "exact",
+
+                    head:
+                        true
+
+                }
+
+            )
+
+            .eq(
+                "fecha",
+                hoy
+            );
+
+
+
+    document
+        .getElementById(
+            "citasHoy"
+        )
+        .textContent =
+
+        citasHoy || 0;
+
+
+
+    /* =========================================
+       REFERIDOS DEL MES
+    ========================================= */
+
+
+    const {
+        count: referidosMes
+    } =
+
+        await supabaseClient
+
+            .from("dimovil")
+
+            .select(
+
+                "*",
+
+                {
+
+                    count:
+                        "exact",
+
+                    head:
+                        true
+
+                }
+
+            )
+
+            .gte(
+                "fecha",
+                inicioMes
+            )
+
+            .not(
+                "recomendado",
+                "is",
+                null
+            );
+
+
+
+    document
+        .getElementById(
+            "referidosMes"
+        )
+        .textContent =
+
+        referidosMes || 0;
+
+
+
+    /* =========================================
+       REGALOS ENTREGADOS
+    ========================================= */
+
+
+    const {
+        count: regalosEntregados
+    } =
+
+        await supabaseClient
+
+            .from("dimovil")
+
+            .select(
+
+                "*",
+
+                {
+
+                    count:
+                        "exact",
+
+                    head:
+                        true
+
+                }
+
+            )
+
+            .eq(
+
+                "estado_regalo",
+
+                "Entregado"
+
+            );
+
+
+
+    document
+        .getElementById(
+            "regalosEntregados"
+        )
+        .textContent =
+
+        regalosEntregados || 0;
+
+}
+
+
+
+/* =====================================================
+   FRASES MOTIVACIONALES
+===================================================== */
+
+
+const frases = [
+
+    "Cada cliente es una oportunidad para crecer. 💙",
+
+    "¡Adela-ntre! Que hoy sea un gran día para conseguir nuevos referidos. 🚀",
+
+    "Con Aurora siempre hay una nueva oportunidad para que salga el sol sobre una buena venta. ☀️",
+
+    "¡Luis, que hoy no falte la actitud para llegar López alto! 🚀",
+
+    "Fernanda, que hoy tus resultados sean tan grandes como tus ganas de crecer. 💙",
+
+    "Con Adela a la delantera, ¡vamos por más referidos! 🏆",
+
+    "Que Aurora ilumine el camino y los referidos lleguen solitos. ☀️✨",
+
+    "Luis por nombre, ¡líder por actitud! 💪",
+
+    "Fernanda, Paola y... ¡pa' arriba! Hoy es un buen día para vender. 📈",
+
+    "Entre todos hacemos DIMOVIL más grande: Aurora, Luis y Fernanda. 💙",
+
+    "Un referido hoy puede convertirse en una gran oportunidad mañana. 🎁",
+
+    "Recomienda, conecta y gana. ¡Así se mueve DIMOVIL! 🚀",
+
+    "La mejor venta comienza con una buena recomendación. ⭐",
+
+    "Hoy puede llegar ese cliente que estabas esperando. 📱",
+
+    "Cada sonrisa, cada recomendación y cada cita cuenta. 💙",
+
+    "¡Que nadie se quede sin su oportunidad de ganar un regalo! 🎁"
+
+];
+
+
+
+function cambiarFrase() {
+
+
+    const indice =
+
+        Math.floor(
+
+            Math.random() *
+            frases.length
+
+        );
+
+
+
+    document
+        .getElementById(
+            "fraseMotivadora"
+        )
+        .textContent =
+
+        frases[indice];
+
+}
+
+
+
+cambiarFrase();
+
+
+
+/* =====================================================
+   ESCAPAR TEXTO
+===================================================== */
+
+
+function escapar(
+    texto
+) {
+
+
+    if (
+
         texto === null ||
+
         texto === undefined
+
     ) {
 
         return "";
@@ -1033,23 +2671,29 @@ function escaparHTML(texto) {
     }
 
 
+
     return String(texto)
+
         .replace(
             /&/g,
             "&amp;"
         )
+
         .replace(
             /</g,
             "&lt;"
         )
+
         .replace(
             />/g,
             "&gt;"
         )
+
         .replace(
             /"/g,
             "&quot;"
         )
+
         .replace(
             /'/g,
             "&#039;"
@@ -1060,53 +2704,12 @@ function escaparHTML(texto) {
 
 
 /* =====================================================
-   FECHA MÍNIMA
+   INICIAR SISTEMA
 ===================================================== */
 
-/*
-   Evita seleccionar fechas pasadas.
-*/
 
-const campoFecha =
-    document.getElementById(
-        "fecha"
-    );
+cargarEstadisticas();
 
-
-const hoy =
-    new Date();
-
-
-const año =
-    hoy.getFullYear();
-
-
-const mes =
-    String(
-        hoy.getMonth() + 1
-    ).padStart(
-        2,
-        "0"
-    );
-
-
-const dia =
-    String(
-        hoy.getDate()
-    ).padStart(
-        2,
-        "0"
-    );
-
-
-campoFecha.min =
-    `${año}-${mes}-${dia}`;
-
-
-
-/* =====================================================
-   FIN
-===================================================== */
 
 </script>
 
@@ -1114,4 +2717,3 @@ campoFecha.min =
 </body>
 
 </html>
-```
