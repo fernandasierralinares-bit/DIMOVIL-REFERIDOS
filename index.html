@@ -1,4 +1,6 @@
+# index.html
 
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -11,14 +13,13 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>DIMOVIL - Registro de Citas</title>
+    <title>DIMOVIL | Registro de Citas</title>
 
-    <!-- CONEXION CON CSS -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="estilos.css">
 
-    <link
-        rel="stylesheet"
-        href="estilos.css"
-    >
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 </head>
 
@@ -26,65 +27,1096 @@
 <body>
 
 
-<!-- ==============================
+<!-- =====================================
      ENCABEZADO
-============================== -->
+===================================== -->
 
 <header class="encabezado">
 
-    <h1>DIMOVIL</h1>
+    <div class="logo">
+        DIMOVIL
+    </div>
 
     <p>
-        Registro y seguimiento de citas
+        Registro de clientes y referidos
     </p>
 
 </header>
 
 
-<!-- ==============================
+<!-- =====================================
      FORMULARIO
-============================== -->
+===================================== -->
 
-<div id="contenedor">
+<main>
 
-    <h2>
-        📱 Registro de Cliente
-    </h2>
+    <section id="contenedor">
+
+        <h2>
+            📱 Registro de Cliente
+        </h2>
 
 
-    <form id="formulario">
+        <form id="formulario">
 
 
-        <!-- NOMBRE -->
+            <!-- NOMBRE -->
 
-        <label for="nombre">
-            Nombre completo
-        </label>
+            <label for="nombre">
+                Nombre completo
+            </label>
 
-        <input
-            type="text"
-            id="nombre"
-            placeholder="Escribe el nombre completo"
-            required
+            <input
+                type="text"
+                id="nombre"
+                placeholder="Escribe el nombre completo"
+                autocomplete="name"
+                required
+            >
+
+
+            <!-- TELEFONO -->
+
+            <label for="numero">
+                Número de teléfono
+            </label>
+
+            <input
+                type="tel"
+                id="numero"
+                placeholder="Ejemplo: 4621234567"
+                inputmode="numeric"
+                maxlength="10"
+                required
+            >
+
+
+            <!-- FECHA -->
+
+            <label for="fecha">
+                Fecha de la cita
+            </label>
+
+            <input
+                type="date"
+                id="fecha"
+                required
+            >
+
+
+            <!-- VENDEDOR -->
+
+            <label for="vendedor">
+                Vendedor
+            </label>
+
+            <input
+                type="text"
+                id="vendedor"
+                placeholder="Nombre del vendedor"
+                required
+            >
+
+
+            <!-- REFERIDOS -->
+
+            <p class="titulo">
+                👥 Referidos
+            </p>
+
+
+            <label>
+                ¿Es su primer referido?
+            </label>
+
+
+            <div class="opciones">
+
+
+                <label class="opcion-radio">
+
+                    <input
+                        type="radio"
+                        name="referido"
+                        value="Primer referido"
+                        required
+                    >
+
+                    <span>
+                        Sí, es su primer referido
+                    </span>
+
+                </label>
+
+
+                <label class="opcion-radio">
+
+                    <input
+                        type="radio"
+                        name="referido"
+                        value="Más de un referido"
+                    >
+
+                    <span>
+                        No, lleva más de un referido
+                    </span>
+
+                </label>
+
+
+            </div>
+
+
+            <!-- PERSONA RECOMENDADA -->
+
+            <label for="recomendado">
+
+                Nombre de la persona que desea recomendar
+
+            </label>
+
+
+            <input
+                type="text"
+                id="recomendado"
+                placeholder="Nombre de la persona recomendada"
+            >
+
+
+            <!-- REGALO -->
+
+            <p class="titulo">
+                🎁 Regalo
+            </p>
+
+
+            <label for="regalo">
+                Selecciona el regalo
+            </label>
+
+
+            <select
+                id="regalo"
+                required
+            >
+
+                <option value="">
+                    Selecciona un regalo
+                </option>
+
+                <option value="Bocina">
+                    🔊 Bocina
+                </option>
+
+                <option value="Audífono">
+                    🎧 Audífono
+                </option>
+
+                <option value="Termo">
+                    🥤 Termo
+                </option>
+
+                <option value="Mica hidrogel">
+                    📱 Mica hidrogel
+                </option>
+
+                <option value="Power Bank">
+                    🔋 Power Bank
+                </option>
+
+                <option value="Smartwatch">
+                    ⌚ Smartwatch
+                </option>
+
+            </select>
+
+
+            <!-- BOTON -->
+
+            <button
+                type="submit"
+                id="btnCrear"
+            >
+
+                🎉 Crear cita
+
+            </button>
+
+
+        </form>
+
+
+        <!-- MENSAJE DE ESTADO -->
+
+        <div
+            id="mensaje"
+            class="mensaje"
+        ></div>
+
+
+        <!-- VER REGISTROS -->
+
+        <button
+            type="button"
+            id="btnRegistros"
+            class="btn-registros"
+            onclick="mostrarRegistros()"
         >
 
+            📋 Ver registros
 
-        <!-- NUMERO -->
+        </button>
 
-        <label for="numero">
-            Número de teléfono
-        </label>
-
-        <input
-            type="tel"
-            id="numero"
-            placeholder="Ejemplo: 4621234567"
-            maxlength="10"
-            required
-        >
+    </section>
 
 
-        <!-- FECHA -->
+    <!-- =====================================
+         TABLA DE REGISTROS
+    ====================================== -->
+
+    <section id="registros">
+
+        <div class="encabezado-registros">
+
+            <h2>
+                📋 Citas registradas
+            </h2>
+
+            <button
+                type="button"
+                class="btn-actualizar"
+                onclick="cargarRegistros()"
+            >
+
+                🔄 Actualizar
+
+            </button>
+
+        </div>
+
+
+        <div class="tabla-contenedor">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Cliente
+                        </th>
+
+                        <th>
+                            Número
+                        </th>
+
+                        <th>
+                            Fecha
+                        </th>
+
+                        <th>
+                            Vendedor
+                        </th>
+
+                        <th>
+                            Referido
+                        </th>
+
+                        <th>
+                            Recomendado
+                        </th>
+
+                        <th>
+                            Regalo
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="tablaRegistros">
+
+                    <tr>
+
+                        <td colspan="7">
+
+                            Cargando registros...
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================
+     PIE
+===================================== -->
+
+<footer>
+
+    DIMOVIL © 2026
+
+</footer>
+
+
+
+<script>
+
+/* =====================================================
+   CONFIGURACIÓN DE SUPABASE
+===================================================== */
+
+
+/*
+   TU URL DE SUPABASE
+*/
+
+const SUPABASE_URL =
+    "https://myuerncwcvrcqzjbntos.supabase.co";
+
+
+/*
+   PEGA AQUÍ TU PUBLISHABLE KEY
+
+   Debe comenzar con:
+
+   sb_publishable_
+
+   NO uses la Secret Key.
+*/
+
+const SUPABASE_KEY =
+    "PEGA_AQUI_TU_PUBLISHABLE_KEY";
+
+
+/*
+   CONEXIÓN
+*/
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+
+/* =====================================================
+   ELEMENTOS
+===================================================== */
+
+const formulario =
+    document.getElementById("formulario");
+
+const btnCrear =
+    document.getElementById("btnCrear");
+
+const mensaje =
+    document.getElementById("mensaje");
+
+const tablaRegistros =
+    document.getElementById("tablaRegistros");
+
+
+
+/* =====================================================
+   MENSAJE
+===================================================== */
+
+function mostrarMensaje(
+    texto,
+    tipo = "exito"
+) {
+
+    mensaje.textContent = texto;
+
+    mensaje.className =
+        "mensaje " + tipo;
+
+}
+
+
+
+/* =====================================================
+   FORMATEAR FECHA
+===================================================== */
+
+function formatearFecha(fecha) {
+
+    if (!fecha) {
+        return "";
+    }
+
+    const partes =
+        fecha.split("-");
+
+    return (
+        partes[2] +
+        "/" +
+        partes[1] +
+        "/" +
+        partes[0]
+    );
+
+}
+
+
+
+/* =====================================================
+   CREAR CITA
+===================================================== */
+
+formulario.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        /* DATOS */
+
+        const nombre =
+            document
+                .getElementById("nombre")
+                .value
+                .trim();
+
+
+        const numero =
+            document
+                .getElementById("numero")
+                .value
+                .trim();
+
+
+        const fecha =
+            document
+                .getElementById("fecha")
+                .value;
+
+
+        const vendedor =
+            document
+                .getElementById("vendedor")
+                .value
+                .trim();
+
+
+        const recomendado =
+            document
+                .getElementById("recomendado")
+                .value
+                .trim();
+
+
+        const regalo =
+            document
+                .getElementById("regalo")
+                .value;
+
+
+        const referidoSeleccionado =
+            document.querySelector(
+                'input[name="referido"]:checked'
+            );
+
+
+        const referido =
+            referidoSeleccionado
+                ? referidoSeleccionado.value
+                : "";
+
+
+
+        /* VALIDACIÓN DEL TELÉFONO */
+
+        const numeroLimpio =
+            numero.replace(/\D/g, "");
+
+
+        if (
+            numeroLimpio.length !== 10
+        ) {
+
+            mostrarMensaje(
+                "El número debe tener 10 dígitos.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+
+        /* BOTÓN */
+
+        btnCrear.disabled = true;
+
+        btnCrear.textContent =
+            "Guardando cita...";
+
+
+
+        try {
+
+
+            /* =================================
+               INSERTAR EN SUPABASE
+            ================================= */
+
+            const {
+                data,
+                error
+            } = await supabaseClient
+                .from("dimovil")
+                .insert([
+
+                    {
+
+                        nombre: nombre,
+
+                        numero: numeroLimpio,
+
+                        fecha: fecha,
+
+                        vendedor: vendedor,
+
+                        referido: referido,
+
+                        recomendado:
+                            recomendado || null,
+
+                        regalo: regalo
+
+                    }
+
+                ])
+                .select()
+                .single();
+
+
+
+            /* ERROR */
+
+            if (error) {
+
+                console.error(
+                    "Error Supabase:",
+                    error
+                );
+
+                throw error;
+
+            }
+
+
+
+            /* =================================
+               FELICITACIÓN
+            ================================= */
+
+            alert(
+
+                "🎉 ¡FELICIDADES!\n\n" +
+
+                "Tu cita fue creada correctamente.\n\n" +
+
+                "👤 Cliente: " +
+                nombre +
+                "\n\n" +
+
+                "📅 Fecha: " +
+                formatearFecha(fecha) +
+                "\n\n" +
+
+                "🎁 A partir de ahora tu cliente " +
+                "podrá obtener increíbles regalos."
+
+            );
+
+
+
+            /* =================================
+               WHATSAPP
+            ================================= */
+
+            enviarWhatsApp(
+                nombre,
+                numeroLimpio,
+                fecha,
+                regalo
+            );
+
+
+
+            /* =================================
+               LIMPIAR FORMULARIO
+            ================================= */
+
+            formulario.reset();
+
+
+
+            mostrarMensaje(
+                "✅ Cita guardada correctamente.",
+                "exito"
+            );
+
+
+
+            /* ACTUALIZAR TABLA */
+
+            cargarRegistros();
+
+
+
+        }
+
+        catch (error) {
+
+
+            console.error(error);
+
+
+            mostrarMensaje(
+
+                "❌ No se pudo guardar la cita. " +
+                "Revisa la conexión con Supabase " +
+                "y las políticas RLS.",
+
+                "error"
+
+            );
+
+        }
+
+
+        finally {
+
+            btnCrear.disabled = false;
+
+            btnCrear.textContent =
+                "🎉 Crear cita";
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+
+function enviarWhatsApp(
+    nombre,
+    numero,
+    fecha,
+    regalo
+) {
+
+
+    let telefono =
+        numero.replace(/\D/g, "");
+
+
+    /*
+       México
+    */
+
+    if (
+        telefono.length === 10
+    ) {
+
+        telefono =
+            "52" +
+            telefono;
+
+    }
+
+
+    const mensajeWhatsApp =
+
+        "¡Hola " +
+        nombre +
+        "! 👋\n\n" +
+
+        "Te confirmamos que tu cita con " +
+        "DIMOVIL ha sido registrada correctamente. 📱💙\n\n" +
+
+        "📅 Fecha: " +
+        formatearFecha(fecha) +
+        "\n\n" +
+
+        "🎁 Regalo seleccionado: " +
+        regalo +
+        "\n\n" +
+
+        "¡Te esperamos! 🎉\n\n" +
+
+        "Gracias por confiar en DIMOVIL.";
+
+
+    const url =
+
+        "https://wa.me/" +
+        telefono +
+        "?text=" +
+        encodeURIComponent(
+            mensajeWhatsApp
+        );
+
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+}
+
+
+
+/* =====================================================
+   MOSTRAR / OCULTAR REGISTROS
+===================================================== */
+
+function mostrarRegistros() {
+
+
+    const registros =
+        document.getElementById(
+            "registros"
+        );
+
+
+    if (
+        registros.style.display ===
+        "block"
+    ) {
+
+        registros.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    registros.style.display =
+        "block";
+
+
+    cargarRegistros();
+
+
+    registros.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+
+/* =====================================================
+   CARGAR REGISTROS DESDE SUPABASE
+===================================================== */
+
+async function cargarRegistros() {
+
+
+    tablaRegistros.innerHTML = `
+
+        <tr>
+
+            <td colspan="7">
+
+                🔄 Cargando...
+
+            </td>
+
+        </tr>
+
+    `;
+
+
+    try {
+
+
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .from("dimovil")
+            .select(
+                "id,nombre,numero,fecha,vendedor,referido,recomendado,regalo"
+            )
+            .order(
+                "fecha",
+                {
+                    ascending: true
+                }
+            );
+
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+
+        /* SIN REGISTROS */
+
+        if (
+            !data ||
+            data.length === 0
+        ) {
+
+            tablaRegistros.innerHTML = `
+
+                <tr>
+
+                    <td colspan="7">
+
+                        📭 No hay citas registradas.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+            return;
+
+        }
+
+
+
+        /* LIMPIAR */
+
+        tablaRegistros.innerHTML =
+            "";
+
+
+
+        /* CREAR FILAS */
+
+        data.forEach(
+            function(cita) {
+
+
+                const fila =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                fila.innerHTML = `
+
+                    <td>
+                        ${escaparHTML(
+                            cita.nombre
+                        )}
+                    </td>
+
+                    <td>
+                        ${escaparHTML(
+                            cita.numero
+                        )}
+                    </td>
+
+                    <td>
+                        ${formatearFecha(
+                            cita.fecha
+                        )}
+                    </td>
+
+                    <td>
+                        ${escaparHTML(
+                            cita.vendedor
+                        )}
+                    </td>
+
+                    <td>
+                        ${escaparHTML(
+                            cita.referido
+                        )}
+                    </td>
+
+                    <td>
+                        ${
+                            cita.recomendado
+                                ? escaparHTML(
+                                    cita.recomendado
+                                )
+                                : "—"
+                        }
+                    </td>
+
+                    <td>
+                        🎁 ${
+                            escaparHTML(
+                                cita.regalo
+                            )
+                        }
+                    </td>
+
+                `;
+
+
+                tablaRegistros.appendChild(
+                    fila
+                );
+
+            }
+        );
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+            "Error al consultar:",
+            error
+        );
+
+
+        tablaRegistros.innerHTML = `
+
+            <tr>
+
+                <td colspan="7">
+
+                    ❌ No se pudieron cargar
+                    los registros.
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   SEGURIDAD BÁSICA PARA MOSTRAR TEXTO
+===================================================== */
+
+function escaparHTML(texto) {
+
+    if (
+        texto === null ||
+        texto === undefined
+    ) {
+
+        return "";
+
+    }
+
+
+    return String(texto)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+
+/* =====================================================
+   FECHA MÍNIMA
+===================================================== */
+
+/*
+   Evita seleccionar fechas pasadas.
+*/
+
+const campoFecha =
+    document.getElementById(
+        "fecha"
+    );
+
+
+const hoy =
+    new Date();
+
+
+const año =
+    hoy.getFullYear();
+
+
+const mes =
+    String(
+        hoy.getMonth() + 1
+    ).padStart(
+        2,
+        "0"
+    );
+
+
+const dia =
+    String(
+        hoy.getDate()
+    ).padStart(
+        2,
+        "0"
+    );
+
+
+campoFecha.min =
+    `${año}-${mes}-${dia}`;
+
+
+
+/* =====================================================
+   FIN
+===================================================== */
+
+</script>
+
+
+</body>
+
+</html>
+```
 
         <label for="fecha">
             Fecha de la cita
