@@ -1,286 +1,701 @@
 # estilos.css
 
 ```css
+/* ==========================================
+   CONFIGURACIÓN GENERAL
+========================================== */
+
 * {
     box-sizing: border-box;
 }
 
+
 body {
-    background: #eaf4ff;
-    font-family: "Trebuchet MS", Arial, sans-serif;
     margin: 0;
     padding: 0;
-    color: #123;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eaf5ff,
+            #f7fbff
+        );
+
+    font-family:
+        "Trebuchet MS",
+        Arial,
+        sans-serif;
+
+    color: #18324a;
 }
 
-/* ==============================
+
+/* ==========================================
    ENCABEZADO DIMOVIL
-============================== */
+========================================== */
 
 .encabezado {
-    background: linear-gradient(135deg, #004aad, #008cff);
+
+    background:
+        linear-gradient(
+            135deg,
+            #003b7a,
+            #0066cc,
+            #008cff
+        );
+
     color: white;
-    padding: 25px 15px;
+
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.20);
+
+    padding:
+        28px
+        15px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(
+            0,
+            70,
+            150,
+            0.25
+        );
+
 }
 
-.encabezado h1 {
-    margin: 0;
-    font-size: 40px;
-    letter-spacing: 4px;
-    font-weight: bold;
+
+.logo {
+
+    font-size: 42px;
+
+    font-weight: 900;
+
+    letter-spacing: 6px;
+
+    text-shadow:
+        0 2px 5px
+        rgba(
+            0,
+            0,
+            0,
+            0.20
+        );
+
 }
+
 
 .encabezado p {
-    margin: 6px 0 0;
+
+    margin:
+        7px
+        0
+        0;
+
     font-size: 15px;
+
+    opacity: 0.95;
+
 }
 
-/* ==============================
-   CONTENEDOR
-============================== */
+
+/* ==========================================
+   CONTENEDOR PRINCIPAL
+========================================== */
+
+main {
+
+    padding:
+        25px
+        0
+        40px;
+
+}
+
 
 #contenedor {
+
     width: 500px;
+
     max-width: 94%;
-    margin: 35px auto;
-    background: #ffffff;
+
+    margin:
+        10px
+        auto;
+
     padding: 30px;
-    border-radius: 20px;
-    border: 2px solid #66b5ff;
-    box-shadow: 0 8px 25px rgba(0, 87, 184, 0.18);
+
+    background: white;
+
+    border-radius: 22px;
+
+    border:
+        2px solid
+        #8dccff;
+
+    box-shadow:
+        0 10px 30px
+        rgba(
+            0,
+            87,
+            184,
+            0.15
+        );
+
 }
 
-/* ==============================
+
+/* ==========================================
    TITULOS
-============================== */
+========================================== */
 
 h2 {
+
+    margin:
+        0
+        0
+        25px;
+
     text-align: center;
+
     color: #0057b8;
-    margin-top: 0;
-    margin-bottom: 25px;
+
+    font-size: 25px;
+
 }
+
 
 .titulo {
+
+    margin-top: 24px;
+
+    padding-bottom: 8px;
+
+    border-bottom:
+        2px solid
+        #dcefff;
+
     color: #0057b8;
+
     font-size: 18px;
+
     font-weight: bold;
-    margin-top: 22px;
-    border-bottom: 2px solid #d9edff;
-    padding-bottom: 7px;
+
 }
 
-/* ==============================
+
+/* ==========================================
    ETIQUETAS
-============================== */
+========================================== */
 
 label {
+
     display: block;
+
     margin-top: 14px;
+
     margin-bottom: 6px;
-    color: #004a99;
+
+    color: #064b8e;
+
     font-weight: bold;
+
 }
 
-/* ==============================
+
+/* ==========================================
    CAMPOS
-============================== */
+========================================== */
 
 input[type="text"],
 input[type="tel"],
 input[type="date"],
-select,
-textarea {
+select {
+
     width: 100%;
-    padding: 12px;
-    border: 2px solid #9ed2ff;
-    border-radius: 10px;
+
+    padding: 13px;
+
+    border:
+        2px solid
+        #a9d8ff;
+
+    border-radius: 11px;
+
     background: #f8fcff;
+
+    color: #18324a;
+
     font-size: 15px;
+
     outline: none;
-    transition: 0.3s;
+
+    transition:
+        0.25s;
+
 }
+
 
 input[type="text"]:focus,
 input[type="tel"]:focus,
 input[type="date"]:focus,
-select:focus,
-textarea:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 6px rgba(0, 123, 255, 0.20);
+select:focus {
+
+    border-color:
+        #007bff;
+
+    background: white;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(
+            0,
+            123,
+            255,
+            0.10
+        );
+
 }
 
-textarea {
-    resize: vertical;
-}
 
-/* ==============================
-   OPCIONES DE REFERIDOS
-============================== */
+/* ==========================================
+   REFERIDOS
+========================================== */
 
 .opciones {
-    background: #f1f8ff;
-    padding: 15px;
-    border-radius: 12px;
-    border: 1px solid #c7e4ff;
+
     margin-top: 8px;
+
+    padding: 15px;
+
+    background:
+        #f1f8ff;
+
+    border:
+        1px solid
+        #c7e4ff;
+
+    border-radius: 13px;
+
 }
 
-.opciones label {
-    color: #174f85;
+
+.opcion-radio {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin:
+        7px
+        0;
+
+    color: #28587f;
+
     font-weight: normal;
-    margin: 8px 0;
+
 }
 
-input[type="radio"] {
-    margin-right: 8px;
+
+.opcion-radio input {
+
+    width: 17px;
+
+    height: 17px;
+
+    accent-color:
+        #0066cc;
+
 }
 
-/* ==============================
-   BOTON CREAR CITA
-============================== */
 
-input[type="submit"] {
+/* ==========================================
+   BOTON CREAR
+========================================== */
+
+#btnCrear {
+
     width: 100%;
+
     margin-top: 25px;
-    padding: 14px;
-    background: linear-gradient(135deg, #0057b8, #008cff);
-    color: white;
+
+    padding: 15px;
+
     border: none;
+
     border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0057b8,
+            #008cff
+        );
+
+    color: white;
+
     font-size: 18px;
+
     font-weight: bold;
+
     cursor: pointer;
-    transition: 0.3s;
+
+    transition:
+        0.25s;
+
 }
 
-input[type="submit"]:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 87, 184, 0.30);
+
+#btnCrear:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 7px 18px
+        rgba(
+            0,
+            87,
+            184,
+            0.30
+        );
+
 }
 
-/* ==============================
+
+#btnCrear:disabled {
+
+    opacity: 0.65;
+
+    cursor:
+        not-allowed;
+
+    transform:
+        none;
+
+}
+
+
+/* ==========================================
+   MENSAJES
+========================================== */
+
+.mensaje {
+
+    display: none;
+
+    margin-top: 15px;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    font-weight: bold;
+
+}
+
+
+.mensaje.exito {
+
+    display: block;
+
+    background:
+        #e8f7ee;
+
+    color:
+        #16733d;
+
+    border:
+        1px solid
+        #a9dfbf;
+
+}
+
+
+.mensaje.error {
+
+    display: block;
+
+    background:
+        #fff0f0;
+
+    color:
+        #b42318;
+
+    border:
+        1px solid
+        #f3b3b3;
+
+}
+
+
+/* ==========================================
    BOTON VER REGISTROS
-============================== */
+========================================== */
 
 .btn-registros {
+
     width: 100%;
+
     margin-top: 12px;
-    padding: 12px;
+
+    padding: 13px;
+
     background: white;
+
     color: #0057b8;
-    border: 2px solid #0057b8;
+
+    border:
+        2px solid
+        #0057b8;
+
     border-radius: 12px;
+
     font-size: 16px;
+
     font-weight: bold;
+
     cursor: pointer;
-    transition: 0.3s;
+
+    transition:
+        0.25s;
+
 }
+
 
 .btn-registros:hover {
-    background: #eaf4ff;
+
+    background:
+        #edf7ff;
+
 }
 
-/* ==============================
-   SECCION REGISTROS
-============================== */
+
+/* ==========================================
+   REGISTROS
+========================================== */
 
 #registros {
-    width: 95%;
-    max-width: 1200px;
-    margin: 30px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(0, 87, 184, 0.15);
+
     display: none;
+
+    width: 95%;
+
+    max-width: 1250px;
+
+    margin:
+        25px
+        auto;
+
+    padding: 25px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(
+            0,
+            87,
+            184,
+            0.13
+        );
+
 }
 
-#registros h2 {
-    margin-bottom: 20px;
+
+/* ==========================================
+   ENCABEZADO DE TABLA
+========================================== */
+
+.encabezado-registros {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
 }
+
+
+.encabezado-registros h2 {
+
+    margin:
+        0
+        0
+        20px;
+
+}
+
+
+/* ==========================================
+   ACTUALIZAR
+========================================== */
+
+.btn-actualizar {
+
+    margin-bottom: 20px;
+
+    padding:
+        9px
+        14px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        #e9f5ff;
+
+    color:
+        #0057b8;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.btn-actualizar:hover {
+
+    background:
+        #d5ebff;
+
+}
+
+
+/* ==========================================
+   TABLA
+========================================== */
 
 .tabla-contenedor {
+
+    width: 100%;
+
     overflow-x: auto;
+
 }
 
-/* ==============================
-   TABLA
-============================== */
 
 table {
+
     width: 100%;
-    border-collapse: collapse;
+
+    min-width: 850px;
+
+    border-collapse:
+        collapse;
+
 }
+
 
 th {
-    background: #0057b8;
+
+    padding: 13px;
+
+    background:
+        #0057b8;
+
     color: white;
-    padding: 12px;
+
+    font-size: 14px;
+
 }
+
 
 td {
-    padding: 10px;
-    border-bottom: 1px solid #dceeff;
+
+    padding: 11px;
+
+    border-bottom:
+        1px solid
+        #dcecff;
+
     text-align: center;
+
+    font-size: 14px;
+
 }
 
-tr:hover {
-    background: #f1f8ff;
+
+tbody tr:hover {
+
+    background:
+        #f3f9ff;
+
 }
 
-/* ==============================
-   BOTON ELIMINAR
-============================== */
 
-.btn-eliminar {
-    background: #dc3545;
-    color: white;
-    border: none;
-    padding: 7px 10px;
-    border-radius: 7px;
-    cursor: pointer;
-}
+/* ==========================================
+   FOOTER
+========================================== */
 
-.btn-eliminar:hover {
-    background: #b02a37;
-}
+footer {
 
-/* ==============================
-   PIE DE PAGINA
-============================== */
+    padding:
+        20px;
 
-.footer {
     text-align: center;
-    color: #52708f;
+
+    color:
+        #62809c;
+
     font-size: 13px;
-    margin: 30px 0;
+
 }
 
-/* ==============================
-   CELULARES
-============================== */
 
-@media (max-width: 600px) {
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (
+    max-width: 600px
+) {
+
+
+    .logo {
+
+        font-size: 32px;
+
+        letter-spacing: 4px;
+
+    }
+
 
     #contenedor {
+
         padding: 20px;
+
     }
 
-    .encabezado h1 {
-        font-size: 30px;
+
+    .encabezado-registros {
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+
     }
 
-    #registros {
-        padding: 15px;
+
+    .btn-actualizar {
+
+        width: 100%;
+
     }
 
-    th,
-    td {
-        font-size: 13px;
-        padding: 8px;
-    }
+
 }
 ```
